@@ -1,35 +1,43 @@
 <Companies>
-<Company>
-  <uuid>9a1f6c2d-4e7b-4a1e-8d3b-5f2c9e7a1b44</uuid>
-  <name>Shire Agricultural Co</name>
-  <contactUUID>1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21</contactUUID>
-  <address>
-    <street>12 Bagshot Row</street>
-    <city>Hobbiton</city>
-    <state>CA</state>
-    <zip>95001</zip>
-  </address>
-  <contactPerson>
-    <uuid>1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21</uuid>
-    <name>Frodo,Baggins</name>
-    <firstName>Frodo</firstName>
-    <lastName>Baggins</lastName>
-    <phoneNumber>555-123-0101</phoneNumber>
-    <emails>
-      <string>frodo@shire.me</string>
-      <string>ringbearer@middleearth.org</string>
-    </emails>
-  </contactPerson>
-</Company>
-<Company>
-  <uuid>3e7b2a91-5c4f-4d88-b1e2-6a9c0f2d7b55</uuid>
-  <name>Rivendell Elven Crafts</name>
-  <contactUUID>7d1c2e8f-9a4b-4c3d-8e1f-2a7b6c5d9e10</contactUUID>
-  <address>
-    <street>88 Last Homely House Rd</street>
-    <city>Rivendell</city>
-    <state>WA</state>
-    <zip>98004</zip>
-  </address>
-</Company>
+<map>
+  <entry>
+    <uuid>3e7b2a91-5c4f-4d88-b1e2-6a9c0f2d7b55</uuid>
+    <Company>
+      <uuid>3e7b2a91-5c4f-4d88-b1e2-6a9c0f2d7b55</uuid>
+      <name>Rivendell Elven Crafts</name>
+      <contactUUID>7d1c2e8f-9a4b-4c3d-8e1f-2a7b6c5d9e10</contactUUID>
+      <address>
+        <street>88 Last Homely House Rd</street>
+        <city>Rivendell</city>
+        <state>WA</state>
+        <zip>98004</zip>
+      </address>
+    </Company>
+  </entry>
+  <entry>
+    <uuid>9a1f6c2d-4e7b-4a1e-8d3b-5f2c9e7a1b44</uuid>
+    <Company>
+      <uuid>9a1f6c2d-4e7b-4a1e-8d3b-5f2c9e7a1b44</uuid>
+      <name>Shire Agricultural Co</name>
+      <contactUUID>1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21</contactUUID>
+      <address>
+        <street>12 Bagshot Row</street>
+        <city>Hobbiton</city>
+        <state>CA</state>
+        <zip>95001</zip>
+      </address>
+      <contactPerson>
+        <uuid>1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21</uuid>
+        <name>Frodo,Baggins</name>
+        <firstName>Frodo</firstName>
+        <lastName>Baggins</lastName>
+        <phoneNumber>555-123-0101</phoneNumber>
+        <emails>
+          <string>frodo@shire.me</string>
+          <string>ringbearer@middleearth.org</string>
+        </emails>
+      </contactPerson>
+    </Company>
+  </entry>
+</map>
 </Companies>

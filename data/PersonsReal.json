@@ -1,6 +1,16 @@
 {
-  "persons": [
-    {
+  "persons": {
+    "8b72e1d4-2c5f-4b6d-93c0-7a4a2d91f8aa": {
+      "firstName": "Samwise",
+      "lastName": "Gamgee",
+      "phoneNumber": "555-123-0102",
+      "emails": [
+        "samwise@gardens.me"
+      ],
+      "uuid": "8b72e1d4-2c5f-4b6d-93c0-7a4a2d91f8aa",
+      "name": "Samwise,Gamgee"
+    },
+    "1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21": {
       "firstName": "Frodo",
       "lastName": "Baggins",
       "phoneNumber": "555-123-0101",
@@ -11,17 +21,7 @@
       "uuid": "1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21",
       "name": "Frodo,Baggins"
     },
-    {
-      "firstName": "Samwise",
-      "lastName": "Gamgee",
-      "phoneNumber": "555-123-0102",
-      "emails": [
-        "samwise@gardens.me"
-      ],
-      "uuid": "8b72e1d4-2c5f-4b6d-93c0-7a4a2d91f8aa",
-      "name": "Samwise,Gamgee"
-    },
-    {
+    "c5e1a7b9-91c2-4f2c-8f5c-0c4e9b1d2e77": {
       "firstName": "Gandalf",
       "lastName": "TheGrey",
       "phoneNumber": "555-123-0103",
@@ -32,5 +32,5 @@
       "uuid": "c5e1a7b9-91c2-4f2c-8f5c-0c4e9b1d2e77",
       "name": "Gandalf,TheGrey"
     }
-  ]
+  }
 }

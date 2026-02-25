@@ -1,23 +1,25 @@
 {
-  "items": [
-    {
+  "items": {
+    "2c3d4e5f-6a7b-48c9-0d1e-2f3a4b5c6d7e": {
+      "serviceFee": 120,
+      "annualFee": 2400,
+      "type": "L",
+      "uuid": "2c3d4e5f-6a7b-48c9-0d1e-2f3a4b5c6d7e",
+      "name": "MiddleEarth Hosting"
+    },
+    "1a2f3b4c-5d6e-47f8-9a0b-1c2d3e4f5a6b": {
       "costPerUnit": 799.99,
+      "count": 0,
       "type": "E",
       "uuid": "1a2f3b4c-5d6e-47f8-9a0b-1c2d3e4f5a6b",
       "name": "Palantir Display"
     },
-    {
-      "costPerHour": 150.0,
+    "7b8c9d0e-1f2a-43b4-8c5d-6e7f8a9b0c1d": {
+      "costPerHour": 150,
+      "billedHours": 0.0,
       "type": "S",
       "uuid": "7b8c9d0e-1f2a-43b4-8c5d-6e7f8a9b0c1d",
       "name": "Wizards Consultation"
-    },
-    {
-      "serviceFee": 120.0,
-      "annualFee": 2400.0,
-      "type": "L",
-      "uuid": "2c3d4e5f-6a7b-48c9-0d1e-2f3a4b5c6d7e",
-      "name": "MiddleEarth Hosting"
     }
-  ]
+  }
 }
