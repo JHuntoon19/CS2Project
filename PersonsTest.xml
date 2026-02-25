@@ -1,0 +1,26 @@
+<Person>
+  <UUID>1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21</UUID>
+  <name>Frodo,Baggins</name>
+  <firstName>Frodo</firstName>
+  <lastName>Baggins</lastName>
+  <phoneNumber>frodo@shire.me</phoneNumber>
+  <emails>
+    <string>ringbearer@middleearth.org</string>
+  </emails>
+</Person><Person>
+  <UUID>8b72e1d4-2c5f-4b6d-93c0-7a4a2d91f8aa</UUID>
+  <name>Samwise,Gamgee</name>
+  <firstName>Samwise</firstName>
+  <lastName>Gamgee</lastName>
+  <phoneNumber>samwise@gardens.me</phoneNumber>
+  <emails/>
+</Person><Person>
+  <UUID>c5e1a7b9-91c2-4f2c-8f5c-0c4e9b1d2e77</UUID>
+  <name>Gandalf,TheGrey</name>
+  <firstName>Gandalf</firstName>
+  <lastName>TheGrey</lastName>
+  <phoneNumber>gandalf@istari.org</phoneNumber>
+  <emails>
+    <string>mtwanderer@valinor.net</string>
+  </emails>
+</Person>

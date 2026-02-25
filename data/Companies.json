@@ -1,0 +1,25 @@
+{
+"companies": [
+  {
+    "uuid": "9a1f6c2d-4e7b-4a1e-8d3b-5f2c9e7a1b44",
+    "name": "Shire Agricultural Co",
+    "address": {
+      "street": "12 Bagshot Row",
+      "city": "Hobbiton",
+      "state": "CA",
+      "zipCode": "95001"
+    },
+    "invoices": []
+  },
+  {
+    "uuid": "3e7b2a91-5c4f-4d88-b1e2-6a9c0f2d7b55",
+    "name": "Rivendell Elven Crafts",
+    "address": {
+      "street": "88 Last Homely House Rd",
+      "city": "Rivendell",
+      "state": "WA",
+      "zipCode": "98004"
+    },
+    "invoices": []
+  }
+  ]}

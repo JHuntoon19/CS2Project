@@ -1,0 +1,37 @@
+{
+  "companies": [
+    {
+      "contactUUID": "1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21",
+      "address": {
+        "street": "12 Bagshot Row",
+        "city": "Hobbiton",
+        "state": "CA",
+        "zip": "95001"
+      },
+      "contactPerson": {
+        "firstName": "Frodo",
+        "lastName": "Baggins",
+        "phoneNumber": "555-123-0101",
+        "emails": [
+          "frodo@shire.me",
+          "ringbearer@middleearth.org"
+        ],
+        "uuid": "1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21",
+        "name": "Frodo,Baggins"
+      },
+      "uuid": "9a1f6c2d-4e7b-4a1e-8d3b-5f2c9e7a1b44",
+      "name": "Shire Agricultural Co"
+    },
+    {
+      "contactUUID": "7d1c2e8f-9a4b-4c3d-8e1f-2a7b6c5d9e10",
+      "address": {
+        "street": "88 Last Homely House Rd",
+        "city": "Rivendell",
+        "state": "WA",
+        "zip": "98004"
+      },
+      "uuid": "3e7b2a91-5c4f-4d88-b1e2-6a9c0f2d7b55",
+      "name": "Rivendell Elven Crafts"
+    }
+  ]
+}

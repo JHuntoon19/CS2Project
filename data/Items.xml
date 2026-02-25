@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<items>
+<service>
+  <code>7b8c9d0e-1f2a-43b4-8c5d-6e7f8a9b0c1d</code>
+  <name>Wizards Consultation</name>
+  <costPerHour>150.0</costPerHour>
+</service>
+<equipment>
+  <code>1a2f3b4c-5d6e-47f8-9a0b-1c2d3e4f5a6b</code>
+  <name>Palantir Display</name>
+  <pricePerUnit>799.99</pricePerUnit>
+</equipment>
+<license>
+  <code>2c3d4e5f-6a7b-48c9-0d1e-2f3a4b5c6d7e</code>
+  <name>MiddleEarth Hosting</name>
+  <serviceFee>120.0</serviceFee>
+  <annualFee>2400.0</annualFee>
+</license>
+</items>
