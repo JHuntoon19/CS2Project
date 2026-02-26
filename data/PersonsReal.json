@@ -1,6 +1,16 @@
 {
-  "persons": {
-    "8b72e1d4-2c5f-4b6d-93c0-7a4a2d91f8aa": {
+  "persons": [
+    {
+      "firstName": "Boromir",
+      "lastName": "Steward",
+      "phoneNumber": "555-123-0107",
+      "emails": [
+        "boromir@gondor.gov"
+      ],
+      "uuid": "4e7b9c1a-2d65-4a8f-b3c9-6f1e2d7a8b44",
+      "name": "Boromir,Steward"
+    },
+    {
       "firstName": "Samwise",
       "lastName": "Gamgee",
       "phoneNumber": "555-123-0102",
@@ -10,7 +20,40 @@
       "uuid": "8b72e1d4-2c5f-4b6d-93c0-7a4a2d91f8aa",
       "name": "Samwise,Gamgee"
     },
-    "1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21": {
+    {
+      "firstName": "Gimli",
+      "lastName": "SonOfGloin",
+      "phoneNumber": "555-123-0106",
+      "emails": [
+        "gimli@erebor.dwf",
+        "axe.master@lonelymountain.org"
+      ],
+      "uuid": "9d4f1b7a-8c52-4e6d-9a3f-2b7c1e5d6a33",
+      "name": "Gimli,SonOfGloin"
+    },
+    {
+      "firstName": "Faramir",
+      "lastName": "Captain",
+      "phoneNumber": "555-123-0108",
+      "emails": [
+        "faramir@gondor.gov",
+        "ithilien.ranger@gondor.gov"
+      ],
+      "uuid": "5a8d2c7b-1e49-4f6a-9c3d-8b2e1f7a6c55",
+      "name": "Faramir,Captain"
+    },
+    {
+      "firstName": "Elrond",
+      "lastName": "Halfelven",
+      "phoneNumber": "555-123-0110",
+      "emails": [
+        "elrond@rivendell.elv",
+        "lord@imladris.elv"
+      ],
+      "uuid": "8e1c7a5d-4b62-4f9a-b3e1-2d7c6a9f5b77",
+      "name": "Elrond,Halfelven"
+    },
+    {
       "firstName": "Frodo",
       "lastName": "Baggins",
       "phoneNumber": "555-123-0101",
@@ -21,7 +64,17 @@
       "uuid": "1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21",
       "name": "Frodo,Baggins"
     },
-    "c5e1a7b9-91c2-4f2c-8f5c-0c4e9b1d2e77": {
+    {
+      "firstName": "Legolas",
+      "lastName": "Greenleaf",
+      "phoneNumber": "555-123-0105",
+      "emails": [
+        "legolas@mirkwood.elv"
+      ],
+      "uuid": "7c3b2e9d-5a61-4f8a-b2d3-1e9a4c6b8d22",
+      "name": "Legolas,Greenleaf"
+    },
+    {
       "firstName": "Gandalf",
       "lastName": "TheGrey",
       "phoneNumber": "555-123-0103",
@@ -31,6 +84,28 @@
       ],
       "uuid": "c5e1a7b9-91c2-4f2c-8f5c-0c4e9b1d2e77",
       "name": "Gandalf,TheGrey"
+    },
+    {
+      "firstName": "Aragorn",
+      "lastName": "Elessar",
+      "phoneNumber": "555-123-0104",
+      "emails": [
+        "aragorn@gondor.gov",
+        "strider@rangers.net"
+      ],
+      "uuid": "2a91c5d7-3f84-4b29-a6d1-9c7f5e2a4b11",
+      "name": "Aragorn,Elessar"
+    },
+    {
+      "firstName": "Galadriel",
+      "lastName": "Lorien",
+      "phoneNumber": "555-123-0109",
+      "emails": [
+        "galadriel@lothlorien.elv",
+        "ringbearer@nenya.elv"
+      ],
+      "uuid": "6b2e9f4a-3c75-4d8a-a1f2-7e9c3b5d8a66",
+      "name": "Galadriel,Lorien"
     }
-  }
+  ]
 }

@@ -1,45 +1,109 @@
 <Persons>
-<map>
-  <entry>
-    <uuid>8b72e1d4-2c5f-4b6d-93c0-7a4a2d91f8aa</uuid>
-    <Person>
-      <uuid>8b72e1d4-2c5f-4b6d-93c0-7a4a2d91f8aa</uuid>
-      <name>Samwise,Gamgee</name>
-      <firstName>Samwise</firstName>
-      <lastName>Gamgee</lastName>
-      <phoneNumber>555-123-0102</phoneNumber>
-      <emails>
-        <string>samwise@gardens.me</string>
-      </emails>
-    </Person>
-  </entry>
-  <entry>
-    <uuid>1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21</uuid>
-    <Person>
-      <uuid>1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21</uuid>
-      <name>Frodo,Baggins</name>
-      <firstName>Frodo</firstName>
-      <lastName>Baggins</lastName>
-      <phoneNumber>555-123-0101</phoneNumber>
-      <emails>
-        <string>frodo@shire.me</string>
-        <string>ringbearer@middleearth.org</string>
-      </emails>
-    </Person>
-  </entry>
-  <entry>
-    <uuid>c5e1a7b9-91c2-4f2c-8f5c-0c4e9b1d2e77</uuid>
-    <Person>
-      <uuid>c5e1a7b9-91c2-4f2c-8f5c-0c4e9b1d2e77</uuid>
-      <name>Gandalf,TheGrey</name>
-      <firstName>Gandalf</firstName>
-      <lastName>TheGrey</lastName>
-      <phoneNumber>555-123-0103</phoneNumber>
-      <emails>
-        <string>gandalf@istari.org</string>
-        <string>mtwanderer@valinor.net</string>
-      </emails>
-    </Person>
-  </entry>
-</map>
+<Person>
+  <uuid>4e7b9c1a-2d65-4a8f-b3c9-6f1e2d7a8b44</uuid>
+  <name>Boromir,Steward</name>
+  <firstName>Boromir</firstName>
+  <lastName>Steward</lastName>
+  <phoneNumber>555-123-0107</phoneNumber>
+  <emails>
+    <string>boromir@gondor.gov</string>
+  </emails>
+</Person>
+<Person>
+  <uuid>8b72e1d4-2c5f-4b6d-93c0-7a4a2d91f8aa</uuid>
+  <name>Samwise,Gamgee</name>
+  <firstName>Samwise</firstName>
+  <lastName>Gamgee</lastName>
+  <phoneNumber>555-123-0102</phoneNumber>
+  <emails>
+    <string>samwise@gardens.me</string>
+  </emails>
+</Person>
+<Person>
+  <uuid>9d4f1b7a-8c52-4e6d-9a3f-2b7c1e5d6a33</uuid>
+  <name>Gimli,SonOfGloin</name>
+  <firstName>Gimli</firstName>
+  <lastName>SonOfGloin</lastName>
+  <phoneNumber>555-123-0106</phoneNumber>
+  <emails>
+    <string>gimli@erebor.dwf</string>
+    <string>axe.master@lonelymountain.org</string>
+  </emails>
+</Person>
+<Person>
+  <uuid>5a8d2c7b-1e49-4f6a-9c3d-8b2e1f7a6c55</uuid>
+  <name>Faramir,Captain</name>
+  <firstName>Faramir</firstName>
+  <lastName>Captain</lastName>
+  <phoneNumber>555-123-0108</phoneNumber>
+  <emails>
+    <string>faramir@gondor.gov</string>
+    <string>ithilien.ranger@gondor.gov</string>
+  </emails>
+</Person>
+<Person>
+  <uuid>8e1c7a5d-4b62-4f9a-b3e1-2d7c6a9f5b77</uuid>
+  <name>Elrond,Halfelven</name>
+  <firstName>Elrond</firstName>
+  <lastName>Halfelven</lastName>
+  <phoneNumber>555-123-0110</phoneNumber>
+  <emails>
+    <string>elrond@rivendell.elv</string>
+    <string>lord@imladris.elv</string>
+  </emails>
+</Person>
+<Person>
+  <uuid>1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21</uuid>
+  <name>Frodo,Baggins</name>
+  <firstName>Frodo</firstName>
+  <lastName>Baggins</lastName>
+  <phoneNumber>555-123-0101</phoneNumber>
+  <emails>
+    <string>frodo@shire.me</string>
+    <string>ringbearer@middleearth.org</string>
+  </emails>
+</Person>
+<Person>
+  <uuid>7c3b2e9d-5a61-4f8a-b2d3-1e9a4c6b8d22</uuid>
+  <name>Legolas,Greenleaf</name>
+  <firstName>Legolas</firstName>
+  <lastName>Greenleaf</lastName>
+  <phoneNumber>555-123-0105</phoneNumber>
+  <emails>
+    <string>legolas@mirkwood.elv</string>
+  </emails>
+</Person>
+<Person>
+  <uuid>c5e1a7b9-91c2-4f2c-8f5c-0c4e9b1d2e77</uuid>
+  <name>Gandalf,TheGrey</name>
+  <firstName>Gandalf</firstName>
+  <lastName>TheGrey</lastName>
+  <phoneNumber>555-123-0103</phoneNumber>
+  <emails>
+    <string>gandalf@istari.org</string>
+    <string>mtwanderer@valinor.net</string>
+  </emails>
+</Person>
+<Person>
+  <uuid>2a91c5d7-3f84-4b29-a6d1-9c7f5e2a4b11</uuid>
+  <name>Aragorn,Elessar</name>
+  <firstName>Aragorn</firstName>
+  <lastName>Elessar</lastName>
+  <phoneNumber>555-123-0104</phoneNumber>
+  <emails>
+    <string>aragorn@gondor.gov</string>
+    <string>strider@rangers.net</string>
+  </emails>
+</Person>
+<Person>
+  <uuid>6b2e9f4a-3c75-4d8a-a1f2-7e9c3b5d8a66</uuid>
+  <name>Galadriel,Lorien</name>
+  <firstName>Galadriel</firstName>
+  <lastName>Lorien</lastName>
+  <phoneNumber>555-123-0109</phoneNumber>
+  <emails>
+    <string>galadriel@lothlorien.elv</string>
+    <string>ringbearer@nenya.elv</string>
+  </emails>
+</Person>
 </Persons>

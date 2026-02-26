@@ -61,14 +61,14 @@ public class License extends Item {
 		endDate = LocalDate.parse(date);
 	}
 
-	private int getNumberOfDays() {
-		return (int) startDate.until(endDate, ChronoUnit.DAYS);
+	public int getNumberOfDays() {
+		return (int) startDate.until(endDate, ChronoUnit.DAYS) + 1;
 	}
 
 	@Override
 	public BigDecimal getCost() {
-		return annualFee.divide(BigDecimal.valueOf(365)).multiply(BigDecimal.valueOf(getNumberOfDays()))
-				.add(BigDecimal.valueOf(25.99)).setScale(2, RoundingMode.HALF_UP);
+		return annualFee.divide(BigDecimal.valueOf(365), 10, RoundingMode.HALF_UP)
+				.multiply(BigDecimal.valueOf(getNumberOfDays())).add(serviceFee).setScale(2, RoundingMode.HALF_UP);
 	}
 
 	@Override
@@ -79,5 +79,13 @@ public class License extends Item {
 	@Override
 	public BigDecimal getTotal() {
 		return getCost().setScale(2, RoundingMode.HALF_UP);
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s (License) %7s\n  %d days (%s -> %s) @ $%f /year\nService Fee: $%f", getUUID(),
+				getName(), getNumberOfDays(), getStartDate().toString(), getEndDate().toString(), getAnnualFee(),
+				getServiceFee());
+
 	}
 }

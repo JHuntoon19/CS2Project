@@ -1,3 +1,6 @@
 companyUuid,contactUuid,name,street,city,state,zip
 9a1f6c2d-4e7b-4a1e-8d3b-5f2c9e7a1b44,1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21,Shire Agricultural Co,12 Bagshot Row,Hobbiton,CA,95001
-3e7b2a91-5c4f-4d88-b1e2-6a9c0f2d7b55,7d1c2e8f-9a4b-4c3d-8e1f-2a7b6c5d9e10,Rivendell Elven Crafts,88 Last Homely House Rd,Rivendell,WA,98004
+3e7b2a91-5c4f-4d88-b1e2-6a9c0f2d7b55,2a91c5d7-3f84-4b29-a6d1-9c7f5e2a4b11,Gondor Royal Holdings,1 White Tower Plaza,Minas Tirith,VA,22001
+5c2d7a9e-1b4f-4e8c-a3d2-7f9b6c1e2a66,7c3b2e9d-5a61-4f8a-b2d3-1e9a4c6b8d22,Mirkwood Archery Supply,77 Woodland Path,Greenwood,OR,97035
+8d4a1c7b-6e2f-4b9a-b3c1-5e7a9d2c4f77,9d4f1b7a-8c52-4e6d-9a3f-2b7c1e5d6a33,Erebor Mining Guild,400 Mountain Hall Rd,Erebor,CO,80435
+2f7c9a1e-5b4d-4e8a-a6c2-9d1b7e3f6a88,8e1c7a5d-4b62-4f9a-b3e1-2d7c6a9f5b77,Rivendell Council Services,88 Last Homely House Rd,Rivendell,WA,98004

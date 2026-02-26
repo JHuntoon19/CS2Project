@@ -1,43 +1,111 @@
 <Companies>
-<map>
-  <entry>
-    <uuid>3e7b2a91-5c4f-4d88-b1e2-6a9c0f2d7b55</uuid>
-    <Company>
-      <uuid>3e7b2a91-5c4f-4d88-b1e2-6a9c0f2d7b55</uuid>
-      <name>Rivendell Elven Crafts</name>
-      <contactUUID>7d1c2e8f-9a4b-4c3d-8e1f-2a7b6c5d9e10</contactUUID>
-      <address>
-        <street>88 Last Homely House Rd</street>
-        <city>Rivendell</city>
-        <state>WA</state>
-        <zip>98004</zip>
-      </address>
-    </Company>
-  </entry>
-  <entry>
-    <uuid>9a1f6c2d-4e7b-4a1e-8d3b-5f2c9e7a1b44</uuid>
-    <Company>
-      <uuid>9a1f6c2d-4e7b-4a1e-8d3b-5f2c9e7a1b44</uuid>
-      <name>Shire Agricultural Co</name>
-      <contactUUID>1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21</contactUUID>
-      <address>
-        <street>12 Bagshot Row</street>
-        <city>Hobbiton</city>
-        <state>CA</state>
-        <zip>95001</zip>
-      </address>
-      <contactPerson>
-        <uuid>1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21</uuid>
-        <name>Frodo,Baggins</name>
-        <firstName>Frodo</firstName>
-        <lastName>Baggins</lastName>
-        <phoneNumber>555-123-0101</phoneNumber>
-        <emails>
-          <string>frodo@shire.me</string>
-          <string>ringbearer@middleearth.org</string>
-        </emails>
-      </contactPerson>
-    </Company>
-  </entry>
-</map>
+<Company>
+  <uuid>5c2d7a9e-1b4f-4e8c-a3d2-7f9b6c1e2a66</uuid>
+  <name>Mirkwood Archery Supply</name>
+  <contactUUID>7c3b2e9d-5a61-4f8a-b2d3-1e9a4c6b8d22</contactUUID>
+  <address>
+    <street>77 Woodland Path</street>
+    <city>Greenwood</city>
+    <state>OR</state>
+    <zip>97035</zip>
+  </address>
+  <contactPerson>
+    <uuid>7c3b2e9d-5a61-4f8a-b2d3-1e9a4c6b8d22</uuid>
+    <name>Legolas,Greenleaf</name>
+    <firstName>Legolas</firstName>
+    <lastName>Greenleaf</lastName>
+    <phoneNumber>555-123-0105</phoneNumber>
+    <emails>
+      <string>legolas@mirkwood.elv</string>
+    </emails>
+  </contactPerson>
+</Company>
+<Company>
+  <uuid>8d4a1c7b-6e2f-4b9a-b3c1-5e7a9d2c4f77</uuid>
+  <name>Erebor Mining Guild</name>
+  <contactUUID>9d4f1b7a-8c52-4e6d-9a3f-2b7c1e5d6a33</contactUUID>
+  <address>
+    <street>400 Mountain Hall Rd</street>
+    <city>Erebor</city>
+    <state>CO</state>
+    <zip>80435</zip>
+  </address>
+  <contactPerson>
+    <uuid>9d4f1b7a-8c52-4e6d-9a3f-2b7c1e5d6a33</uuid>
+    <name>Gimli,SonOfGloin</name>
+    <firstName>Gimli</firstName>
+    <lastName>SonOfGloin</lastName>
+    <phoneNumber>555-123-0106</phoneNumber>
+    <emails>
+      <string>gimli@erebor.dwf</string>
+      <string>axe.master@lonelymountain.org</string>
+    </emails>
+  </contactPerson>
+</Company>
+<Company>
+  <uuid>3e7b2a91-5c4f-4d88-b1e2-6a9c0f2d7b55</uuid>
+  <name>Gondor Royal Holdings</name>
+  <contactUUID>2a91c5d7-3f84-4b29-a6d1-9c7f5e2a4b11</contactUUID>
+  <address>
+    <street>1 White Tower Plaza</street>
+    <city>Minas Tirith</city>
+    <state>VA</state>
+    <zip>22001</zip>
+  </address>
+  <contactPerson>
+    <uuid>2a91c5d7-3f84-4b29-a6d1-9c7f5e2a4b11</uuid>
+    <name>Aragorn,Elessar</name>
+    <firstName>Aragorn</firstName>
+    <lastName>Elessar</lastName>
+    <phoneNumber>555-123-0104</phoneNumber>
+    <emails>
+      <string>aragorn@gondor.gov</string>
+      <string>strider@rangers.net</string>
+    </emails>
+  </contactPerson>
+</Company>
+<Company>
+  <uuid>2f7c9a1e-5b4d-4e8a-a6c2-9d1b7e3f6a88</uuid>
+  <name>Rivendell Council Services</name>
+  <contactUUID>8e1c7a5d-4b62-4f9a-b3e1-2d7c6a9f5b77</contactUUID>
+  <address>
+    <street>88 Last Homely House Rd</street>
+    <city>Rivendell</city>
+    <state>WA</state>
+    <zip>98004</zip>
+  </address>
+  <contactPerson>
+    <uuid>8e1c7a5d-4b62-4f9a-b3e1-2d7c6a9f5b77</uuid>
+    <name>Elrond,Halfelven</name>
+    <firstName>Elrond</firstName>
+    <lastName>Halfelven</lastName>
+    <phoneNumber>555-123-0110</phoneNumber>
+    <emails>
+      <string>elrond@rivendell.elv</string>
+      <string>lord@imladris.elv</string>
+    </emails>
+  </contactPerson>
+</Company>
+<Company>
+  <uuid>9a1f6c2d-4e7b-4a1e-8d3b-5f2c9e7a1b44</uuid>
+  <name>Shire Agricultural Co</name>
+  <contactUUID>1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21</contactUUID>
+  <address>
+    <street>12 Bagshot Row</street>
+    <city>Hobbiton</city>
+    <state>CA</state>
+    <zip>95001</zip>
+  </address>
+  <contactPerson>
+    <uuid>1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21</uuid>
+    <name>Frodo,Baggins</name>
+    <firstName>Frodo</firstName>
+    <lastName>Baggins</lastName>
+    <phoneNumber>555-123-0101</phoneNumber>
+    <emails>
+      <string>frodo@shire.me</string>
+      <string>ringbearer@middleearth.org</string>
+    </emails>
+  </contactPerson>
+</Company>
 </Companies>

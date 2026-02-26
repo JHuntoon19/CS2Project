@@ -15,6 +15,7 @@ public class Main {
 		DataConverter.printCompaniesToJSON(companies);
 		DataConverter.printItemsToXML(items);
 		DataConverter.printItemsToJSON(items);
+
 	}
 
 }

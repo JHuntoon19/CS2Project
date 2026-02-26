@@ -21,6 +21,10 @@ public class Service extends Item {
 		return costPerHour;
 	}
 
+	public void setServicePerson(Person person) {
+		servicePerson = person;
+	}
+
 	public void setBilledHours(double billedHours) {
 		this.billedHours = billedHours;
 	}
@@ -41,4 +45,18 @@ public class Service extends Item {
 		return getCost().add(getTaxes()).setScale(2, RoundingMode.HALF_UP);
 	}
 
+	public Person getServicePerson() {
+		return servicePerson;
+	}
+
+	public double getBilledHours() {
+		return billedHours;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s (Service) %7s\n  %f hours @ $%f/unit\nServiced by %s", getUUID(), getName(),
+				getBilledHours(), getCostPerHour().doubleValue(), getServicePerson().getName());
+
+	}
 }

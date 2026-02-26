@@ -1,6 +1,7 @@
 package com.cinco;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 /**
  * Author: Judah Huntoon Date: 2026-02-11 Purpose: Represents a generic item Use
@@ -14,7 +15,16 @@ public abstract class Item extends Data {
 		this.type = type;
 	}
 
+	public Item(UUID uuid, String name, String type) {
+		super(uuid, name);
+		this.type = type;
+	}
+
 	public abstract BigDecimal getCost();
+
+	public String getType() {
+		return type;
+	}
 
 	public abstract BigDecimal getTaxes();
 

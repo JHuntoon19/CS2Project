@@ -1,34 +1,23 @@
 <Items>
-<map>
-  <entry>
-    <uuid>2c3d4e5f-6a7b-48c9-0d1e-2f3a4b5c6d7e</uuid>
-    <License>
-      <uuid>2c3d4e5f-6a7b-48c9-0d1e-2f3a4b5c6d7e</uuid>
-      <name>MiddleEarth Hosting</name>
-      <type>L</type>
-      <serviceFee>120</serviceFee>
-      <annualFee>2400</annualFee>
-    </License>
-  </entry>
-  <entry>
-    <uuid>1a2f3b4c-5d6e-47f8-9a0b-1c2d3e4f5a6b</uuid>
-    <Equipment>
-      <uuid>1a2f3b4c-5d6e-47f8-9a0b-1c2d3e4f5a6b</uuid>
-      <name>Palantir Display</name>
-      <type>E</type>
-      <costPerUnit>799.99</costPerUnit>
-      <count>0</count>
-    </Equipment>
-  </entry>
-  <entry>
-    <uuid>7b8c9d0e-1f2a-43b4-8c5d-6e7f8a9b0c1d</uuid>
-    <Service>
-      <uuid>7b8c9d0e-1f2a-43b4-8c5d-6e7f8a9b0c1d</uuid>
-      <name>Wizards Consultation</name>
-      <type>S</type>
-      <costPerHour>150</costPerHour>
-      <billedHours>0.0</billedHours>
-    </Service>
-  </entry>
-</map>
+<License>
+  <uuid>2c3d4e5f-6a7b-48c9-0d1e-2f3a4b5c6d7e</uuid>
+  <name>MiddleEarth Hosting</name>
+  <type>L</type>
+  <serviceFee>120</serviceFee>
+  <annualFee>2400</annualFee>
+</License>
+<Equipment>
+  <uuid>1a2f3b4c-5d6e-47f8-9a0b-1c2d3e4f5a6b</uuid>
+  <name>Palantir Display</name>
+  <type>E</type>
+  <costPerUnit>799.99</costPerUnit>
+  <count>0</count>
+</Equipment>
+<Service>
+  <uuid>7b8c9d0e-1f2a-43b4-8c5d-6e7f8a9b0c1d</uuid>
+  <name>Wizards Consultation</name>
+  <type>S</type>
+  <costPerHour>150</costPerHour>
+  <billedHours>0.0</billedHours>
+</Service>
 </Items>

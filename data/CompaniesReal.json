@@ -1,17 +1,93 @@
 {
-  "companies": {
-    "3e7b2a91-5c4f-4d88-b1e2-6a9c0f2d7b55": {
-      "contactUUID": "7d1c2e8f-9a4b-4c3d-8e1f-2a7b6c5d9e10",
+  "companies": [
+    {
+      "contactUUID": "7c3b2e9d-5a61-4f8a-b2d3-1e9a4c6b8d22",
+      "address": {
+        "street": "77 Woodland Path",
+        "city": "Greenwood",
+        "state": "OR",
+        "zip": "97035"
+      },
+      "contactPerson": {
+        "firstName": "Legolas",
+        "lastName": "Greenleaf",
+        "phoneNumber": "555-123-0105",
+        "emails": [
+          "legolas@mirkwood.elv"
+        ],
+        "uuid": "7c3b2e9d-5a61-4f8a-b2d3-1e9a4c6b8d22",
+        "name": "Legolas,Greenleaf"
+      },
+      "uuid": "5c2d7a9e-1b4f-4e8c-a3d2-7f9b6c1e2a66",
+      "name": "Mirkwood Archery Supply"
+    },
+    {
+      "contactUUID": "9d4f1b7a-8c52-4e6d-9a3f-2b7c1e5d6a33",
+      "address": {
+        "street": "400 Mountain Hall Rd",
+        "city": "Erebor",
+        "state": "CO",
+        "zip": "80435"
+      },
+      "contactPerson": {
+        "firstName": "Gimli",
+        "lastName": "SonOfGloin",
+        "phoneNumber": "555-123-0106",
+        "emails": [
+          "gimli@erebor.dwf",
+          "axe.master@lonelymountain.org"
+        ],
+        "uuid": "9d4f1b7a-8c52-4e6d-9a3f-2b7c1e5d6a33",
+        "name": "Gimli,SonOfGloin"
+      },
+      "uuid": "8d4a1c7b-6e2f-4b9a-b3c1-5e7a9d2c4f77",
+      "name": "Erebor Mining Guild"
+    },
+    {
+      "contactUUID": "2a91c5d7-3f84-4b29-a6d1-9c7f5e2a4b11",
+      "address": {
+        "street": "1 White Tower Plaza",
+        "city": "Minas Tirith",
+        "state": "VA",
+        "zip": "22001"
+      },
+      "contactPerson": {
+        "firstName": "Aragorn",
+        "lastName": "Elessar",
+        "phoneNumber": "555-123-0104",
+        "emails": [
+          "aragorn@gondor.gov",
+          "strider@rangers.net"
+        ],
+        "uuid": "2a91c5d7-3f84-4b29-a6d1-9c7f5e2a4b11",
+        "name": "Aragorn,Elessar"
+      },
+      "uuid": "3e7b2a91-5c4f-4d88-b1e2-6a9c0f2d7b55",
+      "name": "Gondor Royal Holdings"
+    },
+    {
+      "contactUUID": "8e1c7a5d-4b62-4f9a-b3e1-2d7c6a9f5b77",
       "address": {
         "street": "88 Last Homely House Rd",
         "city": "Rivendell",
         "state": "WA",
         "zip": "98004"
       },
-      "uuid": "3e7b2a91-5c4f-4d88-b1e2-6a9c0f2d7b55",
-      "name": "Rivendell Elven Crafts"
+      "contactPerson": {
+        "firstName": "Elrond",
+        "lastName": "Halfelven",
+        "phoneNumber": "555-123-0110",
+        "emails": [
+          "elrond@rivendell.elv",
+          "lord@imladris.elv"
+        ],
+        "uuid": "8e1c7a5d-4b62-4f9a-b3e1-2d7c6a9f5b77",
+        "name": "Elrond,Halfelven"
+      },
+      "uuid": "2f7c9a1e-5b4d-4e8a-a6c2-9d1b7e3f6a88",
+      "name": "Rivendell Council Services"
     },
-    "9a1f6c2d-4e7b-4a1e-8d3b-5f2c9e7a1b44": {
+    {
       "contactUUID": "1f3a9c2e-6c4e-4c8b-9a2a-1c9c6f5b7e21",
       "address": {
         "street": "12 Bagshot Row",
@@ -33,5 +109,5 @@
       "uuid": "9a1f6c2d-4e7b-4a1e-8d3b-5f2c9e7a1b44",
       "name": "Shire Agricultural Co"
     }
-  }
+  ]
 }
