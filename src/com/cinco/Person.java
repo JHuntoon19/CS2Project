@@ -45,4 +45,9 @@ public class Person extends Data {
 	public ArrayList<String> getEmails() {
 		return new ArrayList<String>(this.emails);
 	}
+
+	@Override
+	public String toString() {
+		return String.format("%s  (%s)\n\t%s\n", getName(), getUUID(), getEmails().toString());
+	}
 }

@@ -15,6 +15,23 @@ public class License extends Item {
 	private LocalDate startDate;
 	private LocalDate endDate;
 
+	public License(String UUID, String name, String type, String serviceFee, String annualFee) {
+		super(UUID, name, type);
+		this.serviceFee = new BigDecimal(serviceFee);
+		this.annualFee = new BigDecimal(annualFee);
+	}
+
+	/**
+	 * Constructor given a license for deep copy when adding invoice items
+	 * 
+	 * @param l
+	 */
+	public License(License l) {
+		super(l.getUUID(), l.getName(), "l");
+		this.serviceFee = l.getServiceFee();
+		this.annualFee = l.getAnnualFee();
+	}
+
 	public LocalDate getStartDate() {
 		return startDate;
 	}
@@ -39,12 +56,6 @@ public class License extends Item {
 		this.annualFee = annualFee;
 	}
 
-	public License(String UUID, String name, String type, String serviceFee, String annualFee) {
-		super(UUID, name, type);
-		this.serviceFee = new BigDecimal(serviceFee);
-		this.annualFee = new BigDecimal(annualFee);
-	}
-
 	public BigDecimal getServiceFee() {
 		return serviceFee;
 	}
@@ -65,25 +76,37 @@ public class License extends Item {
 		return (int) startDate.until(endDate, ChronoUnit.DAYS) + 1;
 	}
 
+	/**
+	 * Returns the subtotal of the license
+	 */
 	@Override
 	public BigDecimal getCost() {
 		return annualFee.divide(BigDecimal.valueOf(365), 10, RoundingMode.HALF_UP)
 				.multiply(BigDecimal.valueOf(getNumberOfDays())).add(serviceFee).setScale(2, RoundingMode.HALF_UP);
 	}
 
+	/**
+	 * Returns 0 because Licenses have no taxes
+	 */
 	@Override
 	public BigDecimal getTaxes() {
 		return BigDecimal.valueOf(0).setScale(2, RoundingMode.HALF_UP);
 	}
 
+	/**
+	 * Returns the subtotal calulated by getCost(); because taxes are 0
+	 */
 	@Override
 	public BigDecimal getTotal() {
-		return getCost().setScale(2, RoundingMode.HALF_UP);
+		return getCost();
 	}
 
+	/**
+	 * Returrns a formatted String in the Liicense item style
+	 */
 	@Override
 	public String toString() {
-		return String.format("%s (License) %7s\n  %d days (%s -> %s) @ $%f /year\nService Fee: $%f", getUUID(),
+		return String.format("%s (License) %7s\n  %d days (%s -> %s) @ $%f /year\nService Fee: $%f\n", getUUID(),
 				getName(), getNumberOfDays(), getStartDate().toString(), getEndDate().toString(), getAnnualFee(),
 				getServiceFee());
 

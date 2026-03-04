@@ -10,6 +10,7 @@ import java.util.UUID;
 public abstract class Item extends Data {
 	private String type;
 
+// constructors given either a UUID or a String for UUID
 	public Item(String UUID, String name, String type) {
 		super(UUID, name);
 		this.type = type;
@@ -21,10 +22,6 @@ public abstract class Item extends Data {
 	}
 
 	public abstract BigDecimal getCost();
-
-	public String getType() {
-		return type;
-	}
 
 	public abstract BigDecimal getTaxes();
 

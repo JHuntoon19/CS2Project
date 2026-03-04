@@ -11,6 +11,7 @@ public class Equipment extends Item {
 	private BigDecimal costPerUnit;
 	private int count;
 
+// Constructors given either a UUID or a String for UUID
 	public Equipment(String UUID, String name, String type, String costPerUnit) {
 		super(UUID, name, type);
 		this.costPerUnit = new BigDecimal(costPerUnit);
@@ -22,14 +23,18 @@ public class Equipment extends Item {
 	}
 
 	public BigDecimal getCostPerUnit() {
-		getType();
 		return costPerUnit;
+	}
+
+	public int getCount() {
+		return count;
 	}
 
 	public void setCount(int c) {
 		count = c;
 	}
 
+	// These are to be handled by the classes PurchaseEquipment and LeaseEquipment
 	@Override
 	public BigDecimal getCost() {
 		return BigDecimal.ZERO;
@@ -42,16 +47,14 @@ public class Equipment extends Item {
 
 	}
 
+	@Override
 	public BigDecimal getTaxes() {
 		return BigDecimal.ZERO;
 	}
 
+	@Override
 	public BigDecimal getTotal() {
 		return BigDecimal.ZERO;
-	}
-
-	public int getCount() {
-		return count;
 	}
 
 }
