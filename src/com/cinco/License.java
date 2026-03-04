@@ -106,9 +106,10 @@ public class License extends Item {
 	 */
 	@Override
 	public String toString() {
-		return String.format("%s (License) %7s\n  %d days (%s -> %s) @ $%f /year\nService Fee: $%f\n", getUUID(),
-				getName(), getNumberOfDays(), getStartDate().toString(), getEndDate().toString(), getAnnualFee(),
-				getServiceFee());
+		return String.format(
+				"%s (License) %7s\n  %d days (%s -> %s) @ $%.2f /year\nService Fee: $%.2f\n%64s$%10.2f $%10.2f",
+				getUUID(), getName(), getNumberOfDays(), getStartDate().toString(), getEndDate().toString(),
+				getAnnualFee(), getServiceFee(), "", getTaxes(), getTotal());
 
 	}
 }

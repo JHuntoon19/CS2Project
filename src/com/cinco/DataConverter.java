@@ -169,4 +169,19 @@ public class DataConverter {
 			throw new RuntimeException(e);
 		}
 	}
+
+	/**
+	 * Outputs string to a text file called output.txt
+	 */
+	public static void printToFile(String str) {
+		try {
+			File f = new File("data/output.txt");
+			PrintWriter pw = new PrintWriter(f);
+			pw.print(str);
+			pw.close();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 }

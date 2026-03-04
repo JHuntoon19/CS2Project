@@ -46,7 +46,8 @@ public class LeaseEquipment extends Equipment {
 	 */
 	@Override
 	public String toString() {
-		return String.format("%s (Lease) %7s\n  %d units\n", getUUID(), getName(), getCount());
+		return String.format("%s (Lease) %7s\n  %d units\n%64s$%10.2f $%10.2f", getUUID(), getName(), getCount(), "",
+				getTaxes(), getTotal());
 
 	}
 }

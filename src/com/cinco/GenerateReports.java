@@ -12,9 +12,24 @@ public class GenerateReports {
 	 * 
 	 * @param invoices
 	 */
-	public static void generateReports(HashMap<UUID, Invoice> invoices, HashMap<UUID, Company> companies) {
-		// String Builder to have one long string to easily print both to the standard
-		// output and also to a text file
+	public static String generateReportString(HashMap<UUID, Invoice> invoices, HashMap<UUID, Company> companies) {
+		StringBuilder sb = new StringBuilder();
+		// Report organized by totals
+		sb.append(generateTotalReport(invoices));
+		// Report organized by companies
+		sb.append(generateCompanyReport(invoices, companies));
+		// Summary report for each invoice
+		sb.append(generateSummaryReport(invoices));
+		return sb.toString();
+	}
+
+	/**
+	 * Generates a report string organized by totals all about totals
+	 * 
+	 * @param invoices
+	 * @return String
+	 */
+	public static String generateTotalReport(HashMap<UUID, Invoice> invoices) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(
 				"-------------------------------------------------------------------------------------------------\n");
@@ -40,6 +55,18 @@ public class GenerateReports {
 		sb.append(
 				"-------------------------------------------------------------------------------------------------\n");
 		sb.append(String.format("%64d          $%10.2f $%10.2f\n", numItems, tax, total));
+		return sb.toString();
+	}
+
+	/**
+	 * Generates a report based on companies
+	 * 
+	 * @param invoices
+	 * @param companies
+	 * @return String
+	 */
+	public static String generateCompanyReport(HashMap<UUID, Invoice> invoices, HashMap<UUID, Company> companies) {
+		StringBuilder sb = new StringBuilder();
 		sb.append("Invoices by Customer:\n");
 		sb.append(
 				"-------------------------------------------------------------------------------------------------\n");
@@ -51,7 +78,7 @@ public class GenerateReports {
 		HashMap<UUID, ArrayList<Invoice>> companyMap = getCompanyMap(invoices, companies);
 		// Goes in order of companies and calculates totals and adds to string output
 		int numInvoices = 0;
-		total = 0.0;
+		double total = 0.0;
 		for (Company c : companiesByName) {
 			numInvoices += companyMap.get(c.getUUID()).size();
 			total += getInvoiceTotals(companyMap.get(c.getUUID()));
@@ -61,25 +88,52 @@ public class GenerateReports {
 		sb.append(
 				"-------------------------------------------------------------------------------------------------\n");
 		sb.append(String.format("%32d          $%10.2f\n", numInvoices, total));
-		// Summary report for each invoice
+		return sb.toString();
+	}
+
+	/**
+	 * Generates a report based on each invoice and its items
+	 * 
+	 * @param invoices
+	 * @return String
+	 */
+	public static String generateSummaryReport(HashMap<UUID, Invoice> invoices) {
+		StringBuilder sb = new StringBuilder();
+
 		sb.append(
 				"-------------------------------------------------------------------------------------------------\n");
 		sb.append("Invoice Summary:\n");
 		sb.append(
 				"-------------------------------------------------------------------------------------------------\n");
+		// Goes through each invoice and prints out basic invoice info along with the
+		// strings for every item
+		// Sort the invoices based on total
+		ArrayList<Invoice> invoicesByTotal = new ArrayList<>(invoices.values());
+		invoicesByTotal.sort(Comparator.comparing(Invoice::getTotal).reversed());
 		for (Invoice i : invoicesByTotal) {
 			sb.append(String.format("Invoice#\t%s\n", i.getUUID()));
 			sb.append(String.format("Date:\t%s\n", i.getDate().toString()));
 			sb.append(String.format("Customer:\n%s", i.getCustomer().toString()));
 			sb.append(String.format("Sales Person:\n%s", i.getSalesPerson().toString()));
-			sb.append(String.format("Items (%d)                             Tax     Total\n",
-					companyMap.get(i.getCustomer().getUUID()).size()));
-			sb.append("===================================================\n");
+			sb.append(String.format(
+					"Items (%d)                                                                 Tax     Total\n",
+					i.getNumItems()));
+			sb.append("=======================================================================================\n");
 			sb.append(i.toItemString());
+			sb.append("---------------------------------------------------------------------------------------\n");
+			sb.append(String.format("%64s$%10.2f $%10.2f\n", "Subtotals ", i.getTax(), i.getSubtotal()));
+			sb.append(String.format("%64s            $%10.2f\n", "Grand Total ", i.getTotal()));
+			sb.append("\n");
 		}
-		System.out.println(sb.toString());
+		return sb.toString();
 	}
 
+	/**
+	 * Calculates the totals of a list on invoices
+	 * 
+	 * @param invoices
+	 * @return double
+	 */
 	private static double getInvoiceTotals(ArrayList<Invoice> invoices) {
 		double total = 0.0;
 		for (Invoice i : invoices) {
@@ -88,12 +142,21 @@ public class GenerateReports {
 		return total;
 	}
 
+	/**
+	 * Creates a map of a companies UUID to a list of that companies Invoices
+	 * 
+	 * @param invoices
+	 * @param companies
+	 * @return Map<UUID,ArrayList<Invoice>>
+	 */
 	private static HashMap<UUID, ArrayList<Invoice>> getCompanyMap(HashMap<UUID, Invoice> invoices,
 			HashMap<UUID, Company> companies) {
 		HashMap<UUID, ArrayList<Invoice>> companyToInvoices = new HashMap<UUID, ArrayList<Invoice>>();
+		// Puts empty arrayLists to set up each company
 		for (Company c : companies.values()) {
 			companyToInvoices.put(c.getUUID(), new ArrayList<Invoice>());
 		}
+		// adds each invoice to their companies list
 		for (Invoice i : invoices.values()) {
 			companyToInvoices.get(i.getCustomer().getUUID()).add(i);
 		}
@@ -101,13 +164,4 @@ public class GenerateReports {
 		return companyToInvoices;
 	}
 
-	private static int getNumInvoices(UUID customerUUID, ArrayList<Invoice> invoices) {
-		int numOfInvoices = 0;
-		for (Invoice i : invoices) {
-			if (customerUUID.equals(i.getCustomer().getUUID())) {
-				numOfInvoices += 1;
-			}
-		}
-		return numOfInvoices;
-	}
 }

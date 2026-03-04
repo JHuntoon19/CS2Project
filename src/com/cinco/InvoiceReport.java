@@ -11,7 +11,9 @@ public class InvoiceReport {
 		HashMap<UUID, Item> items = LoadData.loadItems("data/Items.csv");
 		HashMap<UUID, Invoice> invoices = LoadData.loadInvoices("data/Invoices.csv", companies, persons);
 		LoadData.loadInvoiceItems("data/InvoiceItems.csv", invoices, items, persons);
-		GenerateReports.generateReports(invoices, companies);
+		String report = GenerateReports.generateReportString(invoices, companies);
+		System.out.print(report);
+		DataConverter.printToFile(report);
 	}
 
 }

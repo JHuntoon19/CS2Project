@@ -42,8 +42,8 @@ public class PurchaseEquipment extends Equipment {
 	 */
 	@Override
 	public String toString() {
-		return String.format("%s (Purchase) %7s\n  %d units @ $%f\n", getUUID(), getName(), getCount(),
-				getCostPerUnit().doubleValue());
+		return String.format("%s (Purchase) %7s\n  %d units @ $%.2f\n%64s$%10.2f $%10.2f", getUUID(), getName(),
+				getCount(), getCostPerUnit().doubleValue(), "", getTaxes(), getTotal());
 
 	}
 }

@@ -77,8 +77,9 @@ public class Service extends Item {
 	 */
 	@Override
 	public String toString() {
-		return String.format("%s (Service) %7s\n  %f hours @ $%f/unit\nServiced by %s\n", getUUID(), getName(),
-				getBilledHours(), getCostPerHour().doubleValue(), getServicePerson().getName());
+		return String.format("%s (Service) %7s\n  %f hours @ $%.2f/unit\nServiced by %s\n%64s$%10.2f $%10.2f",
+				getUUID(), getName(), getBilledHours(), getCostPerHour().doubleValue(), getServicePerson().getName(),
+				"", getTaxes(), getTotal());
 
 	}
 }
