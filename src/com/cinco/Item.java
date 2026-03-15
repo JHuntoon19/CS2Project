@@ -8,17 +8,14 @@ import java.util.UUID;
  * this as a parent to Equipment, Service, and License
  */
 public abstract class Item extends Data {
-	private String type;
 
 // constructors given either a UUID or a String for UUID
-	public Item(String UUID, String name, String type) {
+	public Item(String UUID, String name) {
 		super(UUID, name);
-		this.type = type;
 	}
 
-	public Item(UUID uuid, String name, String type) {
+	public Item(UUID uuid, String name) {
 		super(uuid, name);
-		this.type = type;
 	}
 
 	public abstract BigDecimal getCost();

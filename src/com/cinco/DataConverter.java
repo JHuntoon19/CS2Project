@@ -122,8 +122,8 @@ public class DataConverter {
 	 * 
 	 * @param items
 	 */
-	public static void printItemsToXML(HashMap<UUID, Item> items) {
-		ArrayList<Item> itemsList = new ArrayList<>(items.values());
+	public static void printItemsToXML(HashMap<UUID, Data> items) {
+		ArrayList<Data> itemsList = new ArrayList<>(items.values());
 		XStream xstream = new XStream();
 		xstream.alias("Equipment", Equipment.class);
 		xstream.alias("Service", Service.class);
@@ -132,7 +132,7 @@ public class DataConverter {
 			File f = new File("data/ItemsReal.xml");
 			PrintWriter pw = new PrintWriter(f);
 			pw.println("<Items>");
-			for (Item i : itemsList) {
+			for (Data i : itemsList) {
 				String xml = xstream.toXML(i);
 				pw.println(xml);
 
@@ -149,8 +149,8 @@ public class DataConverter {
 	 * 
 	 * @param items
 	 */
-	public static void printItemsToJSON(HashMap<UUID, Item> items) {
-		ArrayList<Item> itemsList = new ArrayList<>(items.values());
+	public static void printItemsToJSON(HashMap<UUID, Data> items) {
+		ArrayList<Data> itemsList = new ArrayList<>(items.values());
 		Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
 			@Override
 			public JsonElement serialize(LocalDate src, Type typeOfSrc, JsonSerializationContext context) {

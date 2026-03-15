@@ -5,6 +5,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.UUID;
 
+/**
+ * Genrerates reports by creating one big String builder and returns strings
+ */
 public class GenerateReports {
 	/**
 	 * This will sort the invoices to produce three reports that are outputted to

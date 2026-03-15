@@ -4,14 +4,13 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * Represents a purchased item and is a type of equipment. Does math
- * calculations based off of a purhcased item
+ * Equipment that is purchased and placed on an invoice. Calculates totals based
+ * off of a count
  */
-public class PurchaseEquipment extends Equipment {
-
-	public PurchaseEquipment(Equipment e) {
-		super(e.getUUID(), e.getName(), "e", e.getCostPerUnit());
-		;
+public class InvoicePurchaseEquipment extends Equipment {
+	public InvoicePurchaseEquipment(Equipment e, int count) {
+		super(e.getUUID(), e.getName(), e.getCostPerUnit());
+		this.setCount(count);
 	}
 
 	/**
@@ -43,7 +42,8 @@ public class PurchaseEquipment extends Equipment {
 	@Override
 	public String toString() {
 		return String.format("%s (Purchase) %7s\n  %d units @ $%.2f\n%64s$%10.2f $%10.2f", getUUID(), getName(),
-				getCount(), getCostPerUnit().doubleValue(), "", getTaxes(), getTotal());
+				getCount(), getCostPerUnit().doubleValue(), "", getTaxes(), getCost());
 
 	}
+
 }

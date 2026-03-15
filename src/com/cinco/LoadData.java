@@ -93,8 +93,8 @@ public class LoadData {
 	 * @param fileName
 	 * @return HashMap<UUID,Item>
 	 */
-	public static HashMap<UUID, Item> loadItems(String fileName) {
-		HashMap<UUID, Item> items = new HashMap<>();
+	public static HashMap<UUID, Data> loadItems(String fileName) {
+		HashMap<UUID, Data> items = new HashMap<>();
 		Scanner s = null;
 		try {
 			s = new Scanner(new File(fileName));
@@ -111,16 +111,16 @@ public class LoadData {
 
 			if (type.equals("E")) {
 				String costPerUnit = tokens[3];
-				Equipment e = new Equipment(uuid, name, type, costPerUnit);
+				Equipment e = new Equipment(uuid, name, costPerUnit);
 				items.put(e.getUUID(), e);
 			} else if (type.equals("S")) {
 				String costPerHour = tokens[3];
-				Service ser = new Service(uuid, name, type, costPerHour);
+				Service ser = new Service(uuid, name, costPerHour);
 				items.put(ser.getUUID(), ser);
 			} else if (type.equals("L")) {
 				String serviceFee = tokens[3];
 				String annualFee = tokens[4];
-				License l = new License(uuid, name, type, serviceFee, annualFee);
+				License l = new License(uuid, name, serviceFee, annualFee);
 				items.put(l.getUUID(), l);
 			}
 		}
@@ -170,7 +170,7 @@ public class LoadData {
 	 * @param items
 	 * @param persons
 	 */
-	public static void loadInvoiceItems(String fileName, HashMap<UUID, Invoice> invoices, HashMap<UUID, Item> items,
+	public static void loadInvoiceItems(String fileName, HashMap<UUID, Invoice> invoices, HashMap<UUID, Data> items,
 			HashMap<UUID, Person> persons) {
 		Scanner s = null;
 		try {
@@ -190,25 +190,24 @@ public class LoadData {
 			if (itemSpecific.toLowerCase().equals("p")) {
 				// Adds an amount of purchased equipment to an invoices items list
 				int numPurchased = Integer.parseInt(tokens[3]);
-				PurchaseEquipment pe = new PurchaseEquipment((Equipment) items.get(UUID.fromString(itemUUID)));
-				pe.setCount(numPurchased);
+				InvoicePurchaseEquipment pe = new InvoicePurchaseEquipment(
+						(Equipment) items.get(UUID.fromString(itemUUID)), numPurchased);
 				invoices.get(UUID.fromString(invoiceUUID)).addItem(pe);
 
 				// Checks if the item is licensed equipment
 			} else if (itemSpecific.toLowerCase().equals("l")) {
 				// Adds an amount of leased equipment to an invoices items list
 				int numLeased = Integer.parseInt(tokens[3]);
-				LeaseEquipment le = new LeaseEquipment((Equipment) items.get(UUID.fromString(itemUUID)));
-				le.setCount(numLeased);
+				InvoiceLeaseEquipment le = new InvoiceLeaseEquipment((Equipment) items.get(UUID.fromString(itemUUID)),
+						numLeased);
 				invoices.get(UUID.fromString(invoiceUUID)).addItem(le);
 
 				// Checks if the item is a service by checking if the next field is a uuid
 			} else if (itemSpecific.length() == 36) {
 				// Adds a set up service to an invoices items list
 				double billedHours = Double.parseDouble(tokens[3]);
-				Service ser = new Service((Service) items.get(UUID.fromString(itemUUID)));
-				ser.setBilledHours(billedHours);
-				ser.setServicePerson(persons.get(UUID.fromString(itemSpecific)));
+				InvoiceService ser = new InvoiceService((Service) items.get(UUID.fromString(itemUUID)), billedHours,
+						persons.get(UUID.fromString(itemSpecific)));
 				invoices.get(UUID.fromString(invoiceUUID)).addItem(ser);
 
 				// only other item type is a license
@@ -216,9 +215,8 @@ public class LoadData {
 				// Adds a set up License to an invoices items list
 				LocalDate startDate = LocalDate.parse(tokens[2]);
 				LocalDate endDate = LocalDate.parse(tokens[3]);
-				License l = new License((License) items.get(UUID.fromString(itemUUID)));
-				l.setStartDate(startDate);
-				l.setEndDate(endDate);
+				InvoiceLicense l = new InvoiceLicense((License) items.get(UUID.fromString(itemUUID)), startDate,
+						endDate);
 				invoices.get(UUID.fromString(invoiceUUID)).addItem(l);
 			}
 		}

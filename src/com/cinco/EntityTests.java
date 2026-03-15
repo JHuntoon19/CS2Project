@@ -3,6 +3,7 @@ package com.cinco;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -28,9 +29,8 @@ public class EntityTests {
 		double pricePerUnit = 199.99;
 
 		// Creates an instance of equipment with the data values
-		Equipment e = new Equipment(uuid.toString(), name, "e", Double.toString(pricePerUnit));
-		PurchaseEquipment pe = new PurchaseEquipment(e);
-		pe.setCount(25);
+		Equipment e = new Equipment(uuid.toString(), name, Double.toString(pricePerUnit));
+		InvoicePurchaseEquipment pe = new InvoicePurchaseEquipment(e, 25);
 		// Establishes the expected cost and tax (rounded to nearest cent)
 		double expectedCost = 4999.75;
 		double expectedTax = 262.49;
@@ -65,9 +65,8 @@ public class EntityTests {
 		double pricePerUnit = 199.99;
 
 		// Creates an instance of equipment with the data values
-		Equipment e = new Equipment(uuid.toString(), name, "E", Double.toString(pricePerUnit));
-		LeaseEquipment le = new LeaseEquipment(e);
-		le.setCount(25);
+		Equipment e = new Equipment(uuid.toString(), name, Double.toString(pricePerUnit));
+		InvoiceLeaseEquipment le = new InvoiceLeaseEquipment(e, 25);
 		// Establishes the expected cost and tax (rounded to nearest cent)
 		double expectedCost = 7499.63;
 		double expectedTax = 350;
@@ -99,19 +98,18 @@ public class EntityTests {
 				new ArrayList<String>());
 		double billedHours = 3.5;
 		// Creates an instance of service with the data values
-		Service ser = new Service(uuid.toString(), name, "S", Double.toString(costPerHour));
-		ser.setBilledHours(billedHours);
-		ser.setServicePerson(servicePerson);
+		Service ser = new Service(uuid.toString(), name, Double.toString(costPerHour));
+		InvoiceService iSer = new InvoiceService(ser, billedHours, servicePerson);
 		// Establishes the expected cost and tax (rounded to nearest cent)
 		double expectedCost = 300;
 		double expectedTax = 9.45;
 		double expectedTotal = 309.45;
 
 		// Invokes methods to determine the cost/tax:
-		double actualCost = ser.getCost().doubleValue();
-		double actualTax = ser.getTaxes().doubleValue();
-		double actualTotal = ser.getTotal().doubleValue();
-		String s = ser.toString();
+		double actualCost = iSer.getCost().doubleValue();
+		double actualTax = iSer.getTaxes().doubleValue();
+		double actualTotal = iSer.getTotal().doubleValue();
+		String s = iSer.toString();
 
 		// Determines if methods return the expected results
 		assertEquals(expectedCost, actualCost, TOLERANCE);
@@ -130,19 +128,18 @@ public class EntityTests {
 		String serviceFee = "25.99";
 		String annualFee = "1212.12";
 		// Creates an instance of license with the data values
-		License l = new License(uuid.toString(), name, "L", serviceFee, annualFee);
-		l.setStartDate("2026-01-01");
-		l.setEndDate("2026-06-30");
+		License l = new License(uuid.toString(), name, serviceFee, annualFee);
+		InvoiceLicense iL = new InvoiceLicense(l, LocalDate.parse("2026-01-01"), LocalDate.parse("2026-06-30"));
 		// Establishes the expected cost and tax (rounded to nearest cent)
 		double expectedCost = 627.07;
 		double expectedTax = 0;
 		double expectedTotal = 627.07;
 
 		// Invokes methods to determine the cost/tax:
-		double actualCost = l.getCost().doubleValue();
-		double actualTax = l.getTaxes().doubleValue();
-		double actualTotal = l.getTotal().doubleValue();
-		String s = l.toString();
+		double actualCost = iL.getCost().doubleValue();
+		double actualTax = iL.getTaxes().doubleValue();
+		double actualTotal = iL.getTotal().doubleValue();
+		String s = iL.toString();
 
 		// Determines if methods return the expected results
 		assertEquals(expectedCost, actualCost, TOLERANCE);
@@ -152,7 +149,7 @@ public class EntityTests {
 		assertTrue(s.contains("License"));
 		assertTrue(s.contains(annualFee));
 		assertTrue(s.contains(serviceFee));
-		assertTrue(s.contains(l.getStartDate().toString()));
+		assertTrue(s.contains(iL.getStartDate().toString()));
 	}
 
 }

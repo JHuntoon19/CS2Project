@@ -4,12 +4,13 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * Represents a leased item which is a type of equipment. Does calculations
- * based off of leased equipment
+ * Equipment that is leased and added to an invoice. Calculates totals off of a
+ * count
  */
-public class LeaseEquipment extends Equipment {
-	public LeaseEquipment(Equipment e) {
-		super(e.getUUID(), e.getName(), "e", e.getCostPerUnit());
+public class InvoiceLeaseEquipment extends Equipment {
+	public InvoiceLeaseEquipment(Equipment e, int count) {
+		super(e.getUUID(), e.getName(), e.getCostPerUnit());
+		this.setCount(count);
 	}
 
 	/**
@@ -47,7 +48,6 @@ public class LeaseEquipment extends Equipment {
 	@Override
 	public String toString() {
 		return String.format("%s (Lease) %7s\n  %d units\n%64s$%10.2f $%10.2f", getUUID(), getName(), getCount(), "",
-				getTaxes(), getTotal());
-
+				getTaxes(), getCost());
 	}
 }

@@ -12,13 +12,13 @@ public class Equipment extends Item {
 	private int count;
 
 // Constructors given either a UUID or a String for UUID
-	public Equipment(String UUID, String name, String type, String costPerUnit) {
-		super(UUID, name, type);
+	public Equipment(String UUID, String name, String costPerUnit) {
+		super(UUID, name);
 		this.costPerUnit = new BigDecimal(costPerUnit);
 	}
 
-	public Equipment(UUID uuid, String name, String type, BigDecimal costPerUnit) {
-		super(uuid, name, type);
+	public Equipment(UUID uuid, String name, BigDecimal costPerUnit) {
+		super(uuid, name);
 		this.costPerUnit = costPerUnit;
 	}
 
