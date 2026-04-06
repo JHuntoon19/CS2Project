@@ -41,7 +41,7 @@ Items (3)                                                                 Tax   
 Service Fee: $120.00
                                                                 $      0.00 $    330.41
 7b8c9d0e-1f2a-43b4-8c5d-6e7f8a9b0c1d (Service) Wizards Consultation
-  10.000000 hours @ $150.00/unit
+  10.00 hours @ $150.00/unit
 Serviced by Gimli,SonOfGloin
                                                                 $     51.19 $   1625.00
 ---------------------------------------------------------------------------------------
@@ -57,12 +57,12 @@ Legolas,Greenleaf  (7c3b2e9d-5a61-4f8a-b2d3-1e9a4c6b8d22)
 
 Address: 77 Woodland Path,Greenwood,OR,97035
 Sales Person:
-Legolas,Greenleaf  (7c3b2e9d-5a61-4f8a-b2d3-1e9a4c6b8d22)
-	[legolas@mirkwood.elv]
+Galadriel,Lorien  (6b2e9f4a-3c75-4d8a-a1f2-7e9c3b5d8a66)
+	[galadriel@lothlorien.elv, ringbearer@nenya.elv]
 Items (1)                                                                 Tax     Total
 =======================================================================================
 7b8c9d0e-1f2a-43b4-8c5d-6e7f8a9b0c1d (Service) Wizards Consultation
-  5.500000 hours @ $150.00/unit
+  5.50 hours @ $150.00/unit
 Serviced by Boromir,Steward
                                                                 $     29.93 $    950.00
 ---------------------------------------------------------------------------------------
@@ -78,8 +78,8 @@ Aragorn,Elessar  (2a91c5d7-3f84-4b29-a6d1-9c7f5e2a4b11)
 
 Address: 1 White Tower Plaza,Minas Tirith,VA,22001
 Sales Person:
-Aragorn,Elessar  (2a91c5d7-3f84-4b29-a6d1-9c7f5e2a4b11)
-	[aragorn@gondor.gov, strider@rangers.net]
+Gandalf,TheGrey  (c5e1a7b9-91c2-4f2c-8f5c-0c4e9b1d2e77)
+	[gandalf@istari.org, mtwanderer@valinor.net]
 Items (1)                                                                 Tax     Total
 =======================================================================================
 1a2f3b4c-5d6e-47f8-9a0b-1c2d3e4f5a6b (Lease) Palantir Display

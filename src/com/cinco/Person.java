@@ -30,6 +30,15 @@ public class Person extends Data {
 		this.emails = emails;
 	}
 
+//	Constructor which doesnt require emails
+	public Person(String UUID, String firstName, String lastName, String phoneNumber) {
+		super(UUID, String.format("%s,%s", firstName, lastName));
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.emails = new ArrayList<String>();
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -40,6 +49,10 @@ public class Person extends Data {
 
 	public String getPhoneNumber() {
 		return phoneNumber;
+	}
+
+	public void addEmail(String email) {
+		this.emails.add(email);
 	}
 
 	public ArrayList<String> getEmails() {

@@ -2,6 +2,10 @@ package com.cinco;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,6 +53,55 @@ public class LoadData {
 	}
 
 	/**
+	 * Returns a man of persons loaded from the database
+	 * 
+	 * @param cf
+	 * @return HashMap<UUID,Person>
+	 */
+	public static HashMap<UUID, Person> loadPersonsFromDatabase(ConnectionFactory cf) {
+		HashMap<UUID, Person> persons = new HashMap<>();
+		Connection conn = cf.getConnection();
+		// Get basic person data
+		String query = "select personUUID, firstName, lastName, phoneNumber from Person";
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				String uuid = rs.getString("personUUID");
+				String firstName = rs.getString("firstName");
+				String lastName = rs.getString("lastName");
+				String phoneNumber = rs.getString("phoneNumber");
+				Person p = new Person(uuid, firstName, lastName, phoneNumber);
+				persons.put(p.getUUID(), p);
+			}
+			ps.close();
+			rs.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		// Add emails for all persons
+		query = "select address, personUUID from Email e join Person p on p.personId = e.personId";
+		try {
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				String uuid = rs.getString("personUUID");
+				String address = rs.getString("address");
+				persons.get(UUID.fromString(uuid)).addEmail(address);
+			}
+			ps.close();
+			rs.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		cf.putConnection(conn);
+		return persons;
+	}
+
+	/**
 	 * Returns a map of companies loaded from the given file
 	 * 
 	 * @param fileName
@@ -88,6 +141,44 @@ public class LoadData {
 	}
 
 	/**
+	 * Returns a map of companies loaded from the database
+	 * 
+	 * @param cf
+	 * @param persons
+	 * @return HashMap<UUID,Company>
+	 */
+	public static HashMap<UUID, Company> loadCompaniesFromDatabase(ConnectionFactory cf,
+			HashMap<UUID, Person> persons) {
+		HashMap<UUID, Company> companies = new HashMap<>();
+		Connection conn = cf.getConnection();
+		String query = "select c.companyUUID, c.name, c.street, c.city, s.stateCode as state, z.zipcode, p.personUUId from Company c join State s on s.stateId = c.stateId join Zipcode z on z.zipcodeId = c.zipcodeId join Person p on p.personId = c.personId;\r\n";
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				String companyUUID = rs.getString("companyUUID");
+				String compName = rs.getString("name");
+				String street = rs.getString("street");
+				String city = rs.getString("city");
+				String state = rs.getString("state");
+				String zip = rs.getString("zipcode");
+				String personUUID = rs.getString("personUUID");
+				Address a = new Address(street, city, state, zip);
+				Company c = new Company(companyUUID, compName, persons.get(UUID.fromString(personUUID)), a);
+				companies.put(c.getUUID(), c);
+			}
+			ps.close();
+			rs.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		cf.putConnection(conn);
+		return companies;
+	}
+
+	/**
 	 * Retruns a Map of items loaded from given file
 	 * 
 	 * @param fileName
@@ -96,6 +187,47 @@ public class LoadData {
 	public static HashMap<UUID, Data> loadItems(String fileName) {
 		HashMap<UUID, Data> items = new HashMap<>();
 		Scanner s = null;
+		try {
+			s = new Scanner(new File(fileName));
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+		s.nextLine();
+		while (s.hasNext()) {
+			String line = s.nextLine();
+			String tokens[] = line.split(",");
+			String uuid = tokens[0];
+			String type = tokens[1];
+			String name = tokens[2];
+
+			if (type.equals("E")) {
+				String costPerUnit = tokens[3];
+				Equipment e = new Equipment(uuid, name, costPerUnit);
+				items.put(e.getUUID(), e);
+			} else if (type.equals("S")) {
+				String costPerHour = tokens[3];
+				Service ser = new Service(uuid, name, costPerHour);
+				items.put(ser.getUUID(), ser);
+			} else if (type.equals("L")) {
+				String serviceFee = tokens[3];
+				String annualFee = tokens[4];
+				License l = new License(uuid, name, serviceFee, annualFee);
+				items.put(l.getUUID(), l);
+			}
+		}
+		s.close();
+		return items;
+	}
+
+	/**
+	 * Retruns a Map of items loaded from given file
+	 * 
+	 * @param fileName
+	 * @return HashMap<UUID,Item>
+	 */
+	public static HashMap<UUID, Data> loadItemsFromDatabase(ConnectionFactory cf) {
+		HashMap<UUID, Data> items = new HashMap<>();
+		Connection conn = cf.getConnection();
 		try {
 			s = new Scanner(new File(fileName));
 		} catch (FileNotFoundException e) {

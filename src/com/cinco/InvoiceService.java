@@ -75,7 +75,7 @@ public class InvoiceService extends Item {
 	 */
 	@Override
 	public String toString() {
-		return String.format("%s (Service) %7s\n  %f hours @ $%.2f/unit\nServiced by %s\n%64s$%10.2f $%10.2f",
+		return String.format("%s (Service) %7s\n  %.2f hours @ $%.2f/unit\nServiced by %s\n%64s$%10.2f $%10.2f",
 				getUUID(), getName(), getBilledHours(), getCostPerHour().doubleValue(), getServicePerson().getName(),
 				"", getTaxes(), getCost());
 

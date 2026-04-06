@@ -10,8 +10,9 @@ import java.util.UUID;
 public class InvoiceReport {
 
 	public static void main(String[] args) {
-		HashMap<UUID, Person> persons = LoadData.loadPersons("data/Persons.csv");
-		HashMap<UUID, Company> companies = LoadData.loadCompanies("data/Companies.csv", persons);
+		ConnectionFactory cf = new ConnectionFactory();
+		HashMap<UUID, Person> persons = LoadData.loadPersonsFromDatabase(cf);
+		HashMap<UUID, Company> companies = LoadData.loadCompaniesFromDatabase(cf, persons);
 		HashMap<UUID, Data> items = LoadData.loadItems("data/Items.csv");
 		HashMap<UUID, Invoice> invoices = LoadData.loadInvoices("data/Invoices.csv", companies, persons);
 		LoadData.loadInvoiceItems("data/InvoiceItems.csv", invoices, items, persons);
@@ -20,7 +21,6 @@ public class InvoiceReport {
 		DataConverter.printToFile(report);
 		DataConverter.printItemsToXML(items);
 		DataConverter.printItemsToJSON(items);
-		System.out.println("Converted");
 	}
 
 }

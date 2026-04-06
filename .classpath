@@ -10,5 +10,8 @@
 	<classpathentry kind="lib" path="lib/xstream-1.4.21.jar"/>
 	<classpathentry kind="lib" path="lib/gson-2.13.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="lib/log4j-api-2.25.4.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-core-2.25.4.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-j-9.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
