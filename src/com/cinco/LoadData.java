@@ -12,8 +12,10 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.UUID;
 
+import org.apache.logging.log4j.Logger;
+
 /*
- * This class is used to load from csv files data about persons, companies, and items
+ * This class is used to load from either csv files or the database with data about persons, companies, and items
  * Each method returns a map of the data's UUID to itself
  */
 public class LoadData {
@@ -58,7 +60,7 @@ public class LoadData {
 	 * @param cf
 	 * @return HashMap<UUID,Person>
 	 */
-	public static HashMap<UUID, Person> loadPersonsFromDatabase(ConnectionFactory cf) {
+	public static HashMap<UUID, Person> loadPersonsFromDatabase(ConnectionFactory cf, Logger logger) {
 		HashMap<UUID, Person> persons = new HashMap<>();
 		Connection conn = cf.getConnection();
 		// Get basic person data
@@ -66,6 +68,7 @@ public class LoadData {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
+			logger.info("Creating Persons");
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -79,12 +82,14 @@ public class LoadData {
 			ps.close();
 			rs.close();
 		} catch (SQLException e) {
+			logger.error("Failed to create all Persons");
 			throw new RuntimeException(e);
 		}
 
 		// Add emails for all persons
 		query = "select address, personUUID from Email e join Person p on p.personId = e.personId";
 		try {
+			logger.info("Adding emails to persons");
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -95,6 +100,7 @@ public class LoadData {
 			ps.close();
 			rs.close();
 		} catch (SQLException e) {
+			logger.error("Failed to add all emails");
 			throw new RuntimeException(e);
 		}
 		cf.putConnection(conn);
@@ -147,7 +153,7 @@ public class LoadData {
 	 * @param persons
 	 * @return HashMap<UUID,Company>
 	 */
-	public static HashMap<UUID, Company> loadCompaniesFromDatabase(ConnectionFactory cf,
+	public static HashMap<UUID, Company> loadCompaniesFromDatabase(ConnectionFactory cf, Logger logger,
 			HashMap<UUID, Person> persons) {
 		HashMap<UUID, Company> companies = new HashMap<>();
 		Connection conn = cf.getConnection();
@@ -155,6 +161,7 @@ public class LoadData {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
+			logger.info("Creating Companies");
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -172,6 +179,7 @@ public class LoadData {
 			ps.close();
 			rs.close();
 		} catch (SQLException e) {
+			logger.error("Failed to create all companies");
 			throw new RuntimeException(e);
 		}
 		cf.putConnection(conn);
@@ -220,43 +228,49 @@ public class LoadData {
 	}
 
 	/**
-	 * Retruns a Map of items loaded from given file
+	 * Retruns a Map of items loaded from the database
 	 * 
 	 * @param fileName
 	 * @return HashMap<UUID,Item>
 	 */
-	public static HashMap<UUID, Data> loadItemsFromDatabase(ConnectionFactory cf) {
+	public static HashMap<UUID, Data> loadItemsFromDatabase(ConnectionFactory cf, Logger logger) {
 		HashMap<UUID, Data> items = new HashMap<>();
 		Connection conn = cf.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "select * from Item";
 		try {
-			s = new Scanner(new File(fileName));
-		} catch (FileNotFoundException e) {
+			logger.info("Creating items");
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				String itemUUID = rs.getString("itemUUID");
+				String name = rs.getString("name");
+				String type = rs.getString("type");
+				if (type.equals("equipment")) {
+					String costPerUnit = rs.getString("costPerUnit");
+					Equipment e = new Equipment(itemUUID, name, costPerUnit);
+					items.put(e.getUUID(), e);
+				} else if (type.equals("service")) {
+					String costPerHour = rs.getString("costPerHour");
+					Service s = new Service(itemUUID, name, costPerHour);
+					items.put(s.getUUID(), s);
+				} else if (type.equals("license")) {
+					String serviceFee = rs.getString("serviceFee");
+					String annualFee = rs.getString("annualFee");
+					License l = new License(itemUUID, name, serviceFee, annualFee);
+					items.put(l.getUUID(), l);
+				}
+			}
+			ps.close();
+			rs.close();
+		} catch (SQLException e) {
+			logger.error("Failed to create all items");
 			throw new RuntimeException(e);
 		}
-		s.nextLine();
-		while (s.hasNext()) {
-			String line = s.nextLine();
-			String tokens[] = line.split(",");
-			String uuid = tokens[0];
-			String type = tokens[1];
-			String name = tokens[2];
 
-			if (type.equals("E")) {
-				String costPerUnit = tokens[3];
-				Equipment e = new Equipment(uuid, name, costPerUnit);
-				items.put(e.getUUID(), e);
-			} else if (type.equals("S")) {
-				String costPerHour = tokens[3];
-				Service ser = new Service(uuid, name, costPerHour);
-				items.put(ser.getUUID(), ser);
-			} else if (type.equals("L")) {
-				String serviceFee = tokens[3];
-				String annualFee = tokens[4];
-				License l = new License(uuid, name, serviceFee, annualFee);
-				items.put(l.getUUID(), l);
-			}
-		}
-		s.close();
+		cf.putConnection(conn);
+		;
 		return items;
 	}
 
@@ -291,6 +305,45 @@ public class LoadData {
 			invoices.put(UUID.fromString(uuid), i);
 		}
 		s.close();
+		return invoices;
+	}
+
+	/**
+	 * This loads invoices from the database and returns a map of invoices
+	 * 
+	 * @param fileName
+	 * @param companies
+	 * @param persons
+	 * @return HashMap<UUID,Invoices>
+	 */
+	public static HashMap<UUID, Invoice> loadInvoicesFromDatabase(ConnectionFactory cf, Logger logger,
+			HashMap<UUID, Company> companies, HashMap<UUID, Person> persons) {
+		HashMap<UUID, Invoice> invoices = new HashMap<>();
+		Connection conn = cf.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "select i.invoiceUUID, c.companyUUID, p.personUUID, date from Invoice i join Company c on c.companyId = i.companyId join Person p on p.personId = i.personId";
+		try {
+			logger.info("Creating invoices");
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				String uuid = rs.getString("invoiceUUID");
+				String customerUUID = rs.getString("companyUUID");
+				String salesPersonUUID = rs.getString("personUUID");
+				String date = rs.getString("date");
+				Company c = companies.get(UUID.fromString(customerUUID));
+				Person p = persons.get(UUID.fromString(salesPersonUUID));
+				Invoice i = new Invoice(uuid, date, c, p);
+				invoices.put(UUID.fromString(uuid), i);
+			}
+			ps.close();
+			rs.close();
+		} catch (SQLException e) {
+			logger.error("Failed to create all invoices");
+			throw new RuntimeException(e);
+		}
+		cf.putConnection(conn);
 		return invoices;
 	}
 
@@ -353,5 +406,78 @@ public class LoadData {
 			}
 		}
 		s.close();
+	}
+
+	/**
+	 * Adds invoice specific items into invoices from the database
+	 * 
+	 * @param fileName
+	 * @param invoices
+	 * @param items
+	 * @param persons
+	 */
+	public static void loadInvoiceItemsFromDatabase(ConnectionFactory cf, Logger logger,
+			HashMap<UUID, Invoice> invoices, HashMap<UUID, Data> items, HashMap<UUID, Person> persons) {
+		Connection conn = cf.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "select inv.invoiceUUID, i.itemUUID, ii.purchase, ii.quantity, p.personUUID, ii.billedHours, ii.startDate, ii.endDate from InvoiceItem ii join Item i on i.itemId = ii.itemId join Invoice inv on inv.invoiceId = ii.itemId left join Person p on p.personId = ii.personId";
+		try {
+			logger.info("Creating invoice items");
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				String invoiceUUID = rs.getString("invoiceUUID");
+				String itemUUID = rs.getString("itemUUID");
+				String purchase = rs.getString("purchase");
+				// For each item the following fields are item specific
+				// Checks if the item is purchased equipment
+				if (purchase != null) {
+					if (purchase.equals("1")) {
+						// Adds an amount of purchased equipment to an invoices items list
+						int numPurchased = Integer.parseInt(rs.getString("quantity"));
+						InvoicePurchaseEquipment pe = new InvoicePurchaseEquipment(
+								(Equipment) items.get(UUID.fromString(itemUUID)), numPurchased);
+						invoices.get(UUID.fromString(invoiceUUID)).addItem(pe);
+
+						// Checks if the item is licensed equipment
+					} else if (purchase.equals("0")) {
+						// Adds an amount of leased equipment to an invoices items list
+						int numLeased = Integer.parseInt(rs.getString("quantity"));
+						InvoiceLeaseEquipment le = new InvoiceLeaseEquipment(
+								(Equipment) items.get(UUID.fromString(itemUUID)), numLeased);
+						invoices.get(UUID.fromString(invoiceUUID)).addItem(le);
+
+						// Checks if the item is a service by checking if the next field is a uuid
+					}
+				} else {
+					String personUUID = rs.getString("personUUID");
+					if (personUUID != null) {
+
+						// Adds a set up service to an invoices items list
+						double billedHours = Double.parseDouble(rs.getString("billedHours"));
+						InvoiceService ser = new InvoiceService((Service) items.get(UUID.fromString(itemUUID)),
+								billedHours, persons.get(UUID.fromString(personUUID)));
+						invoices.get(UUID.fromString(invoiceUUID)).addItem(ser);
+						// only other item type is a license
+					} else {
+						// Adds a set up License to an invoices items list
+						LocalDate startDate = LocalDate.parse(rs.getString("startDate"));
+						LocalDate endDate = LocalDate.parse(rs.getString("endDate"));
+						InvoiceLicense l = new InvoiceLicense((License) items.get(UUID.fromString(itemUUID)), startDate,
+								endDate);
+						invoices.get(UUID.fromString(invoiceUUID)).addItem(l);
+					}
+
+				}
+			}
+			ps.close();
+			rs.close();
+		} catch (SQLException e) {
+			logger.error("Failed to create all invoice items");
+			throw new RuntimeException(e);
+		}
+
+		cf.putConnection(conn);
 	}
 }
