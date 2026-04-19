@@ -22,9 +22,6 @@ public class InvoiceReport {
 		LoadData.loadInvoiceItemsFromDatabase(cf, logger, invoices, items, persons);
 		String report = GenerateReports.generateReportString(invoices, companies);
 		System.out.print(report);
-		DataConverter.printToFile(report);
-		DataConverter.printItemsToXML(items);
-		DataConverter.printItemsToJSON(items);
 	}
 
 }

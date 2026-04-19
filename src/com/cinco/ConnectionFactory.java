@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Factory class that produces and closes connections one-by-one.
+ * Author: Judah Huntoon Date: 04/18/2026 Factory class that produces and closes
+ * connections one-by-one.
  */
 public class ConnectionFactory {
 

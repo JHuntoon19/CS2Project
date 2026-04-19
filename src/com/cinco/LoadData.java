@@ -15,6 +15,8 @@ import java.util.UUID;
 import org.apache.logging.log4j.Logger;
 
 /*
+ * Author: Judah Huntoon
+ * Date: 04/18/2026
  * This class is used to load from either csv files or the database with data about persons, companies, and items
  * Each method returns a map of the data's UUID to itself
  */
@@ -238,7 +240,7 @@ public class LoadData {
 		Connection conn = cf.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String query = "select * from Item";
+		String query = "select itemUUID, name, type, costPerUnit, costPerHour, serviceFee, annualFee from Item";
 		try {
 			logger.info("Creating items");
 			ps = conn.prepareStatement(query);
@@ -421,7 +423,7 @@ public class LoadData {
 		Connection conn = cf.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String query = "select inv.invoiceUUID, i.itemUUID, ii.purchase, ii.quantity, p.personUUID, ii.billedHours, ii.startDate, ii.endDate from InvoiceItem ii join Item i on i.itemId = ii.itemId join Invoice inv on inv.invoiceId = ii.itemId left join Person p on p.personId = ii.personId";
+		String query = "select inv.invoiceUUID, i.itemUUID, ii.purchase, ii.quantity, p.personUUID, ii.billedHours, ii.startDate, ii.endDate from InvoiceItem ii join Item i on i.itemId = ii.itemId join Invoice inv on inv.invoiceId = ii.invoiceId left join Person p on p.personId = ii.personId";
 		try {
 			logger.info("Creating invoice items");
 			ps = conn.prepareStatement(query);
@@ -434,6 +436,7 @@ public class LoadData {
 				// Checks if the item is purchased equipment
 				if (purchase != null) {
 					if (purchase.equals("1")) {
+
 						// Adds an amount of purchased equipment to an invoices items list
 						int numPurchased = Integer.parseInt(rs.getString("quantity"));
 						InvoicePurchaseEquipment pe = new InvoicePurchaseEquipment(
