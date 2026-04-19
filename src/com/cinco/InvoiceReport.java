@@ -15,11 +15,11 @@ public class InvoiceReport {
 	public static void main(String[] args) {
 		final Logger logger = LogManager.getLogger(InvoiceReport.class);
 		ConnectionFactory cf = new ConnectionFactory(logger);
-		HashMap<UUID, Person> persons = LoadData.loadPersonsFromDatabase(cf, logger);
-		HashMap<UUID, Company> companies = LoadData.loadCompaniesFromDatabase(cf, logger, persons);
-		HashMap<UUID, Data> items = LoadData.loadItemsFromDatabase(cf, logger);
-		HashMap<UUID, Invoice> invoices = LoadData.loadInvoicesFromDatabase(cf, logger, companies, persons);
-		LoadData.loadInvoiceItemsFromDatabase(cf, logger, invoices, items, persons);
+		HashMap<UUID, Person> persons = InvoiceData.loadPersonsFromDatabase();
+		HashMap<UUID, Company> companies = InvoiceData.loadCompaniesFromDatabase(persons);
+		HashMap<UUID, Data> items = InvoiceData.loadItemsFromDatabase();
+		HashMap<UUID, Invoice> invoices = InvoiceData.loadInvoicesFromDatabase(companies, persons);
+		InvoiceData.loadInvoiceItemsFromDatabase(invoices, items, persons);
 		String report = GenerateReports.generateReportString(invoices, companies);
 		System.out.print(report);
 	}
